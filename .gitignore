@@ -1,0 +1,25 @@
+# Ignore Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.BIN/
+
+# Ignore log files
+*.log
+
+# Ignore PowerShell-specific temporary files
+*.ps1~ 
+*.psm1~ 
+*.psd1~ 
+
+# Ignore compiled PowerShell help
+*.xml
+
+# Ignore VS Code settings (if using)
+.vscode/
+
+# Ignore any ZIP/archives
+*.zip
+*.tar
+*.gz
+
