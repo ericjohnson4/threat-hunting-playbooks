@@ -1,1 +1,10 @@
 // KQL for MDE
+
+// T1110 Brute Force Burst - MDE Advanced Hunting Detection
+DeviceLogonEvents
+| where LogonResult == "Failed"
+| where AccountName !endswith "$"
+| summarize Failures = count(), Start = min(Timestamp), End = max(Timestamp)
+        by AccountName, RemoteIP, DeviceName
+| where Failures >= 10 and (End - Start) < 15m
+

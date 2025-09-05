@@ -1,1 +1,11 @@
 // KQL for Sentinel
+
+// T1110 Brute Force Burst - Sentinel Detection
+SecurityEvent
+| where EventID == 4625
+| where Account !endswith "$"
+| where isnotempty(IpAddress)
+| summarize Failures = count(), Start = min(TimeGenerated), End = max(TimeGenerated)
+        by Account, SrcIP = IpAddress, Computer
+| where Failures >= 10 and (End - Start) < 15m
+
